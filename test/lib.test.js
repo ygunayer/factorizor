@@ -2,7 +2,7 @@ require('mocha');
 
 const { expect } = require('chai');
 
-const { divide, factorize, factorizers } = require('./lib');
+const { isPrime, divide, isSquare } = require('../lib');
 
 describe('lib', () => {
     describe('divide', () => {
@@ -30,32 +30,20 @@ describe('lib', () => {
         });
     });
 
-    const doTestAlgorithm = algorithm => {
-        describe(`factorize using ${algorithm} algorithm`, () => {
-            const fnFactorize = factorizers[algorithm];
+    describe('isSquare', () => {
+        it('should return true for 1', () => expect(isSquare(1)).to.be.true);
+        it('should return true for 9', () => expect(isSquare(9)).to.be.true);
+        it('should return false for 1000', () => expect(isSquare(1000)).to.be.false);
+        it('should return false for -16', () => expect(isSquare(-16)).to.be.false);
+    });
 
-            const cases = [
-                { number: 10, expected: { 2: 1, 5: 1 } },
-                { number: 20, expected: { 2: 2, 5: 1 } },
-                { number: 917, expected: { 7: 1, 131: 1 } },
-
-                { number: 0, expected: { } },
-                { number: 2, expected: { } },
-                { number: 17, expected: { } },
-
-                { number: -18, expected: { '-1': 1, 3: 1, 6: 1 } },
-                { number: -42, expected: { '-1': 1, 2: 2, 13: 1 } }
-            ];
-
-            cases.forEach(({ number, expected }) => {
-                it(`should factor ${number} into ${JSON.stringify(expected, null, 0)}`, () => {
-                    const actual = fnFactorize(number);
-
-                    expect(actual).to.deep.equal(expected);
-                })
-            });
-        });
-    };
-
-    Object.keys(factorizers).forEach(doTestAlgorithm);
+    describe('isPrime', () => {
+        it('should return true for 1', () => expect(isPrime(1)).to.be.true);
+        it('should return true for 2', () => expect(isPrime(1)).to.be.true);
+        it('should return true for 3', () => expect(isPrime(1)).to.be.true);
+        it('should return false for 9', () => expect(isPrime(9)).to.be.false);
+        it('should return true for 99901', () => expect(isPrime(1)).to.be.true);
+        it('should return false for 1000', () => expect(isPrime(1000)).to.be.false);
+        it('should return false for -16', () => expect(isPrime(-16)).to.be.false);
+    });
 });

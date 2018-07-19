@@ -1,3 +1,8 @@
+const primeCheckers = require('./prime-checkers');
+
+/**
+ * Divides a number by a divisor, returning both the quotinent and the remainder
+ */
 function divide(dividend, divisor) {
     if (divisor == 0) {
         return { quotinent: Infinity, remainder: 0 };
@@ -36,34 +41,43 @@ function divide(dividend, divisor) {
 }
 
 /**
- * Some factorization algorithms based on http://connellybarnes.com/documents/factoring.pdf
+ * Returns whether or not the provided number is a square
  */
-const factorizers = {
-    /**
-     * Trial Division Factorization
-     */
-    cheat: number => {
-        throw new Error('Not implemented yet');
-    },
-
-    /**
-     * Fermat Factorization
-     */
-    fermat: number => {
-        throw new Error('Not implemented yet');
+function isSquare(x) {
+    if (x < 0) {
+        return false;
     }
-};
-
-function factorize(number, algorithm = 'fermat') {
-    if (!factorizers[algorithm]) {
-        throw new Error(`Unknown factorization algorithm: ${algorithm}`);
+    
+    if (x == 1) {
+        return true;
     }
 
-    return factorizers[algorithm](number);
+    const squared = Math.sqrt(x);
+    const rounded = Math.round(squared);
+    return x == rounded * rounded;
+}
+
+/**
+ * Returns the greatest common divisor of two numbers
+ */
+function gcd(a, b) {
+    if (a == 0 || b == 0) {
+        return 1;
+    }
+
+    let x = Math.abs(a);
+    let y = Math.abs(b);
+    while (y) {
+        let t = y;
+        y = divide(x, y).remainder;
+        x = t;
+    }
+    return x;
 }
 
 module.exports = {
-    factorize,
     divide,
-    factorizers
+    gcd,
+    isPrime: number => primeCheckers.eratosthenes.isPrime(number),
+    isSquare
 };
