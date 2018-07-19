@@ -1,0 +1,13 @@
+{
+  "name": "factorizor",
+  "version": "1.0.0",
+  "main": "lib.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "node node_modules/mocha/bin/mocha lib.test.js"
+  },
+  "dependencies": {
+    "chai": "4.1.2",
+    "mocha": "5.2.0"
+  }
+}
