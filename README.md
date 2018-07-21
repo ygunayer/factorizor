@@ -44,5 +44,17 @@ The probabilistic algorithms listed above have a tendency to fail by entering in
     $ yarn test
     ```
 
+## Running
+To factor a number, run `index.js` with the number to factor as the first argument, and the algorithm as the second (optional, default: `trialDivision`)
+
+Examples:
+```bash
+$ node index.js 42
+```
+
+```bash
+$ node index.js 105 pollardRho
+```
+
 ## License
 MIT

@@ -1,7 +1,7 @@
 {
   "name": "factorizor",
   "version": "1.0.0",
-  "main": "lib.js",
+  "main": "index.js",
   "license": "MIT",
   "scripts": {
     "test": "node node_modules/mocha/bin/mocha test/"
